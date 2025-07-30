@@ -1,9 +1,9 @@
 const User = require("../models/User");
 const bcryptjs = require("bcrypt");
 const jwtLib = require("jsonwebtoken");
-const { v4: generateUuid } = require("uuid"); // 👈 Make sure this is here
+const { v4: generateUuid } = require("uuid");
 
-// ✅ REGISTER controller
+// REGISTER controller
 exports.signUp = async (req, res) => {
   const { email, firstName, lastName, password, isAdmin } = req.body;
 
@@ -37,8 +37,12 @@ exports.signUp = async (req, res) => {
 
     await userRecord.save();
 
+
     const token = jwtLib.sign(
-      { userId: userRecord.userId },
+      {
+        _id: userRecord._id,
+        isAdmin: userRecord.isAdmin,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
@@ -46,7 +50,7 @@ exports.signUp = async (req, res) => {
     return res.status(201).json({
       success: true,
       message: "User successfully created",
-      token, // ✅ include token in response
+      token,
     });
   } catch (error) {
     return res.status(500).json({
@@ -56,7 +60,7 @@ exports.signUp = async (req, res) => {
   }
 };
 
-// ✅ LOGIN controller
+// LOGIN controller
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
 
@@ -86,8 +90,12 @@ exports.signIn = async (req, res) => {
       });
     }
 
+  
     const token = jwtLib.sign(
-      { userId: foundUser.userId },
+      {
+        _id: foundUser._id,
+        isAdmin: foundUser.isAdmin,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );

@@ -21,7 +21,8 @@ exports.verifyAuth = async (req, res, next) => {
             });
         }
 
-        const decodedPayload = jwtLib.verify(extractedToken, process.env.SECRET);
+        const decodedPayload = jwtLib.verify(extractedToken, process.env.JWT_SECRET);
+
 
         const foundUser = await User.findById(decodedPayload._id);
 
