@@ -7,7 +7,7 @@ const {
   approveProduct,
   rejectProduct,
   deleteProduct,
-  createProduct, // 👈 include createProduct here
+  createProduct, 
 } = require("../../controllers/admin/productController");
 
 const { verifyAuth, checkAdminRole } = require("../../middlewares/authorizedUsers");
