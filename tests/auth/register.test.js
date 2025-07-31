@@ -3,7 +3,7 @@ const request = require('supertest');
 const app = require('../../index');
 const mongoose = require('mongoose');
 
-let authToken; // 👈 export this later
+let authToken; 
 
 describe('User Registration', () => {
   afterAll(async () => {
@@ -21,8 +21,8 @@ describe('User Registration', () => {
     expect(res.statusCode).toBe(201);
     expect(res.body).toHaveProperty('token');
 
-    authToken = res.body.token; // 👈 store token
+    authToken = res.body.token;
   });
 });
 
-module.exports = { authToken }; // 👈 export
+module.exports = { authToken }; 
