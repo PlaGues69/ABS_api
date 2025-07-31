@@ -36,7 +36,7 @@ router.get("/:productId", verifyAuth, async (req, res) => {
       return res.status(404).json({ message: "File not found on server" });
     }
 
-    res.download(filePath); // ✅ Sends the file
+    res.download(filePath); //  Sends the file
   } catch (err) {
     res.status(500).json({ message: "Download failed", error: err.message });
   }
