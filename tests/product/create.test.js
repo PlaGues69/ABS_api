@@ -18,7 +18,7 @@ describe('Product Creation', () => {
         lastName: 'User',
         email,
         password,
-        isAdmin: true, // 👈 ensure admin user
+        isAdmin: true, 
       });
 
     // Login with that user to get token
@@ -36,14 +36,14 @@ describe('Product Creation', () => {
   it('should create a new product with valid token', async () => {
     const res = await request(app)
       .post('/api/admin/products')
-      .set('Authorization', `Bearer ${token}`) // 👈 set auth token
+      .set('Authorization', `Bearer ${token}`) 
       .field('name', 'Test Product')
       .field('price', '99.99')
       .field('description', 'A test product')
       .field('category', 'test')
-      .attach('image', path.join(__dirname, '../assets/test-image.jpg')); // 👈 attach a test image
+      .attach('image', path.join(__dirname, '../assets/test-image.jpg')); 
 
-    console.log('RESPONSE:', res.body); // optional debug log
+    console.log('RESPONSE:', res.body); 
 
     expect(res.statusCode).toBe(201);
     expect(res.body).toHaveProperty('_id');
