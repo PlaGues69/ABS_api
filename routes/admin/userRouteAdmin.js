@@ -20,13 +20,13 @@ userRoutes.post("/", verifyAuth, checkAdminRole, registerUser);
 // Get all users (admin only)
 userRoutes.get("/", verifyAuth, checkAdminRole, fetchAllUsers);
 
-// ✅ Get a specific user (admin only)
+//  Get a specific user (admin only)
 userRoutes.get("/:id", verifyAuth, checkAdminRole, fetchSingleUser);
 
-// ✅ Update a user (admin only)
+// Update a user (admin only)
 userRoutes.put("/:id", verifyAuth, checkAdminRole, modifyUser);
 
-// ✅ Delete a user (admin only)
+// Delete a user (admin only)
 userRoutes.delete("/:id", verifyAuth, checkAdminRole, removeUser);
 
 module.exports = userRoutes;
