@@ -4,11 +4,11 @@ const User = require("../models/User");
 const { signUp, signIn } = require("../controllers/userController");
 const jwtAuth = require("../middlewares/jwtAuth");
 
-// ✅ REGISTER and LOGIN routes
+// REGISTER and LOGIN routes
 userRoutes.post("/register", signUp);
 userRoutes.post("/login", signIn);
 
-// ✅ GET all users
+// GET all users
 userRoutes.get("/all", async (req, res) => {
   try {
     const users = await User.find({}, "-password");
@@ -18,7 +18,7 @@ userRoutes.get("/all", async (req, res) => {
   }
 });
 
-// ✅ DELETE user by ID
+// DELETE user by ID
 userRoutes.delete("/:id", async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
@@ -31,7 +31,7 @@ userRoutes.delete("/:id", async (req, res) => {
   }
 });
 
-// ✅ GET current user (profile)
+// GET current user (profile)
 userRoutes.get("/me", jwtAuth, async (req, res) => {
   try {
     // req.user is set by jwtAuth middleware
