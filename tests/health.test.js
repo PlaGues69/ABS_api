@@ -9,7 +9,6 @@ describe('Health Check', () => {
     expect(res.text).toBe('Hello World!');
   });
 
-  // ✅ Cleanly close MongoDB connection after all tests
   afterAll(async () => {
     await mongoose.connection.close();
   });
